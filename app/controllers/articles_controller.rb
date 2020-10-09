@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
     
     def show
-        @article = Article.find(params[:id])
+        
     end
 
     def index
@@ -10,15 +11,15 @@ class ArticlesController < ApplicationController
     end
 
     def new
-      @user_article = Article.new
+      @article = Article.new
     end
 
     def create
-        @user_article = Article.new(params.require(:article).permit(:title, :description)) #rails shortcut
+        @article = Article.new(article_params) #rails shortcut
         
-        if @user_article.save
+        if @article.save
           flash[:notice] = "Article created successfully"
-          redirect_to @user_article
+          redirect_to @article
 				            
         else
             render 'new'
@@ -26,15 +27,15 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-      @article = Article.find(params[:id])
+      
       
     end
 
     def update
      
-      @article = Article.find(params[:id])
+      
 
-      if @article.update(params.require(:article).permit(:title, :description))
+      if @article.update(article_params)
         flash[:notice] = "Article updated successfully"
         redirect_to @article
 
@@ -42,4 +43,23 @@ class ArticlesController < ApplicationController
         render 'edit'
       end
     end
+
+    def destroy
+      
+      @article.destroy
+      redirect_to articles_path
+    end
+
+    private
+
+    def set_article
+      @article = Article.find(params[:id])
+    end
+
+    def article_params
+      params.require(:article).permit(:title, :description)
+    end
+
+    
+
 end
