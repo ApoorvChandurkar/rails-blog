@@ -5,6 +5,13 @@
   <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-outline-info"%>
 </div>
 
+<div class="apple_pagination">
+    <%= will_paginate @articles, :container => false %>
+  </div>
+
 <%= render 'articles/articles'%>
 
 
+<div class="apple_pagination">
+    <%= will_paginate @articles, :container => false %>
+  </div>
