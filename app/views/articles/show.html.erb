@@ -7,7 +7,7 @@
           <div class="card-header">
           <% if @article.user %>
             <%= @article.user.username %>
-            <%= gravatar_for(@article.user, size: 100) %>
+            <%= link_to gravatar_for(@article.user, size: 100), @article.user %>
           <% end %>
           </div>
           <div class="card-body">
