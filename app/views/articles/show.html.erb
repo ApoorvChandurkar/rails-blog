@@ -8,6 +8,9 @@
           <% if @article.user %>
             <%= @article.user.username %>
             <%= link_to gravatar_for(@article.user, size: 100), @article.user %>
+            <% if @article.categories.any? %>
+              <div class="mt-2"><%= render @article.categories %></div>
+            <% end %>
           <% end %>
           </div>
           <div class="card-body">

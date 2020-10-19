@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :require_user, except: [:show, :index, :new, :create]
   before_action :require_same_user, only: [:update, :edit, :destroy]
   def show
-    @articles = @user.articles.paginate(page: params[:page], per_page: 5) #if articles.paginate, everuthing will be posted, so important point
+    @articles = @user.articles.paginate(page: params[:page], per_page: 5) #if articles.paginate, everything will be posted, so important point
   end
 
   def new

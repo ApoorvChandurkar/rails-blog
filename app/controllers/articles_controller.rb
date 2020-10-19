@@ -17,15 +17,16 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        @article = Article.new(article_params) #rails shortcut
-        @article.user = current_user
-        if @article.save
-          flash[:notice] = "Article created successfully"
-          redirect_to @article
-				            
-        else
-            render 'new'
-        end
+      byebug
+      @article = Article.new(article_params) #rails shortcut
+      @article.user = current_user
+      if @article.save
+        flash[:notice] = "Article created successfully"
+        redirect_to @article
+                  
+      else
+          render 'new'
+      end
     end
 
     def edit
@@ -59,7 +60,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :description)
+      params.require(:article).permit(:title, :description, category_ids: [])
     end
 
     def require_same_user
